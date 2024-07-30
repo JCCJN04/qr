@@ -1,4 +1,4 @@
-// src/components/EmployeeList.js
+// src/components/EmployeeList.js ??
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase';
