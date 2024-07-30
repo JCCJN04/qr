@@ -1,0 +1,53 @@
+/* src/components/EmployeeDetail.css */
+.employee-detail-container {
+    padding: 20px;
+  }
+  
+  .employee-detail-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .employee-detail-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .employee-detail-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .employee-detail-photo img {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .employee-detail-info {
+    text-align: center;
+  }
+  
+  .employee-detail-info p {
+    margin: 5px 0;
+  }
+  
+  .employee-detail-qr {
+    margin-top: 20px;
+  }
+  
+  .employee-detail-qr img {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
