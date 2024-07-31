@@ -10,7 +10,7 @@ import EmployeeCredential from './components/EmployeeCredential';
 
 function App() {
   return (
-    <Router basename="/credenciales">
+    <Router>
       <Routes>
         <Route path="/" element={<EmployeeList />} />
         <Route path="/empleados/:id" element={<EmployeeDetail />} />
