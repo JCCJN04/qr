@@ -70,8 +70,8 @@ function EmployeeList() {
   }
 
   const employee = employees[currentIndex];
-  //const qrValue = `http://localhost:3000/empleado/${encodeURIComponent(employee.num_empleado)}`;
-  const qrValue = `https://<jccjn04>.github.io/<credenciales>/empleado/${encodeURIComponent(employee.num_empleado)}`;
+  const qrValue = `http://localhost:3000/empleado/${encodeURIComponent(employee.num_empleado)}`;
+  //const qrValue = `https://<jccjn04>.github.io/<credenciales>/empleado/${encodeURIComponent(employee.num_empleado)}`;
 
 
   return (

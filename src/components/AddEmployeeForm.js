@@ -1,20 +1,22 @@
 // src/components/AddEmployeeForm.js
 import React, { useState, useEffect } from 'react';
-import { addEmployee } from '../services/employeeService'; // Asegúrate de que esta función exista y esté correcta
+import { addEmployee } from '../services/employeeService';
 import { collection, getDocs } from 'firebase/firestore';
-import { db, storage } from '../firebase'; // Asegúrate de exportar storage desde firebase.js
+import { db, storage } from '../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import './AddEmployeeForm.css'; // Importa el archivo CSS
 
 function AddEmployeeForm() {
   const [nombre, setNombre] = useState('');
   const [puesto, setPuesto] = useState('');
   const [estado, setEstado] = useState('');
   const [departamento, setDepartamento] = useState('');
-  const [imagen, setImagen] = useState(null); // Para el archivo de imagen
-  const [numEmpleado, setNumEmpleado] = useState(''); // Campo para el número de empleado
+  const [imagen, setImagen] = useState(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [maxNumEmpleado, setMaxNumEmpleado] = useState(0); // Estado para el máximo número de empleado
+  const [maxNumEmpleado, setMaxNumEmpleado] = useState(0);
+  const navigate = useNavigate(); // Usa useNavigate
 
   useEffect(() => {
     async function fetchMaxNumEmpleado() {
@@ -34,7 +36,6 @@ function AddEmployeeForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Validación básica
     if (!nombre || !puesto || !estado || !departamento) {
       setError('Todos los campos son obligatorios');
       return;
@@ -60,18 +61,18 @@ function AddEmployeeForm() {
       estado,
       departamento,
       imagen: imagenURL,
-      num_empleado: maxNumEmpleado + 1 // Genera el siguiente número de empleado
+      num_empleado: maxNumEmpleado + 1
     };
 
     try {
       await addEmployee(employeeData);
       setSuccess('Empleado agregado con éxito');
-      // Limpiar campos después de agregar el empleado
       setNombre('');
       setPuesto('');
       setEstado('');
       setDepartamento('');
       setImagen(null);
+      navigate('/'); // Redirige a la lista de empleados
     } catch (error) {
       console.error('Error adding employee:', error);
       setError('Error al agregar empleado.');
@@ -79,45 +80,50 @@ function AddEmployeeForm() {
   };
 
   return (
-    <div>
-      <h1>Agregar Nuevo Empleado</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          placeholder="Nombre"
-          required
-        />
-        <input
-          type="text"
-          value={puesto}
-          onChange={(e) => setPuesto(e.target.value)}
-          placeholder="Puesto"
-          required
-        />
-        <input
-          type="text"
-          value={estado}
-          onChange={(e) => setEstado(e.target.value)}
-          placeholder="Estado"
-          required
-        />
-        <input
-          type="text"
-          value={departamento}
-          onChange={(e) => setDepartamento(e.target.value)}
-          placeholder="Departamento"
-          required
-        />
-        <input
-          type="file"
-          onChange={(e) => setImagen(e.target.files[0])} // Maneja el archivo seleccionado
-        />
-        <button type="submit">Agregar Empleado</button>
-      </form>
-      {error && <p className="error">{error}</p>}
-      {success && <p className="success">{success}</p>}
+    <div className="form-container">
+      <div className="form-card">
+        <h1 className="form-header">Agregar Nuevo Empleado</h1>
+        <form onSubmit={handleSubmit} className="form-body">
+          <input
+            type="text"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            placeholder="Nombre"
+            required
+          />
+          <input
+            type="text"
+            value={puesto}
+            onChange={(e) => setPuesto(e.target.value)}
+            placeholder="Puesto"
+            required
+          />
+          <input
+            type="text"
+            value={estado}
+            onChange={(e) => setEstado(e.target.value)}
+            placeholder="Estado"
+            required
+          />
+          <input
+            type="text"
+            value={departamento}
+            onChange={(e) => setDepartamento(e.target.value)}
+            placeholder="Departamento"
+            required
+          />
+          <input
+            type="file"
+            onChange={(e) => setImagen(e.target.files[0])}
+          />
+          <div className="form-footer">
+            <button type="submit">Agregar Empleado</button>
+            <button type="button" onClick={() => navigate('/')}>Regresar</button>
+          </div>
+        </form>
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+      </div>
     </div>
   );
 }
