@@ -71,7 +71,8 @@ function EmployeeList() {
 
   const employee = employees[currentIndex];
   //const qrValue = `http://localhost:3000/empleado/${encodeURIComponent(employee.num_empleado)}`;
-  const qrValue = `https://2227btpm-3000.usw3.devtunnels.ms/empleado/${encodeURIComponent(employee.num_empleado)}`;
+  //const qrValue = `https://2227btpm-3000.usw3.devtunnels.ms/empleado/${encodeURIComponent(employee.num_empleado)}`;
+  const qrValue = `juan carlos mendoza castillo prueba`;
   //const qrValue = `https://<jccjn04>.github.io/<credenciales>/empleado/${encodeURIComponent(employee.num_empleado)}`;
 
 
